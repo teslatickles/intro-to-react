@@ -11,17 +11,37 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
   <script type="text/babel">
      class Greeting extends React.Component {
-       render() {
+       constructor(props){
+         super(props);
+           this.state = {
+             name: ''
+           }
+         }
+
+         changeName(event) {
+           this.setState({
+             name: ['Hunter', 'Jamie', 'Lemon'][Math.round(Math.random() * 2)]
+           })
+         }
+         render() {
           return (
             <div>
-              <h1>Hello {this.props.name}!</h1>
+              <h1>Hello {this.state.name}!</h1>
+               <h3>{this.props.total}</h3>
+                <h5>This page will randomly say "Hello" to either me (site maker), my girlfriend, or our cat!</h5>
+                 <div>
+                   <button onKeyPress={this.changeName.bind(this)}>Click to engage stochastic process</button>
+                 </div>
+                 <p>
+                   After engaging this page by clicking the button above, press any key on your keyboard!
+                 </p>
             </div>
           );
         }
      } 
      
      ReactDOM.render(
-       <Greeting name="Bloc Student"/>, document.getElementById('app')
+       <Greeting />, document.getElementById('app')
      );
   </script>
 </body>
